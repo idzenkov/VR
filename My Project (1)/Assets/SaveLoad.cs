@@ -5,8 +5,8 @@ using System;
 
 public class SaveLoad : MonoBehaviour
 {
-    public Transform targetObject; // Объект, позицию которого нужно сохранить
-    public string filePath = Application.dataPath+"/save.json"; // Путь к файлу для сохранения
+    public Transform targetObject; 
+    public string filePath = Application.dataPath+"/save.json"; 
     public void Start()
     {
         
@@ -14,7 +14,7 @@ public class SaveLoad : MonoBehaviour
     }
     public void SavePositionToJSON()
     {
-        // Проверяем, что целевой объект существует
+        
         if (targetObject == null)
         {
             Debug.LogError("Target object not set.");
@@ -34,24 +34,24 @@ public class SaveLoad : MonoBehaviour
 
     public void LoadPositionFromJSON()
     {
-        // Проверяем, существует ли файл
+        
         if (!File.Exists(filePath))
         {
             Debug.LogError("File not found at " + filePath);
             return;
         }
 
-        // Читаем содержимое файла
+        
         string jsonData = File.ReadAllText(filePath);
 
-        // Разделяем данные на имя и позицию
+        
         string[] data = jsonData.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
         Debug.Log(data);
 
         string positionJson = data[0] + "," + data[1] + "," + data[2];
         Debug.Log(positionJson);
 
-        // Пытаемся десериализовать имя и позицию
+        
         try
         {
 
